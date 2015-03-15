@@ -3,14 +3,13 @@ using System.Collections;
 
 public class GameMechanics : MonoBehaviour {
 	
-	int humanstage = 0; //This is stage of life of human
+	int humanstage = 0; //This is stage of life of human, you start at Baby=0
 	double current_time = 0;
 	int health;
 	int strength;
-	int maxcarryweight;
-	double speedI_runtime;
-	double speedII_runtime;
-
+	int carryweight;
+	double speed_multiplier;
+	double jump_multiplier;
 
 
 	// Use this for initialization
@@ -31,10 +30,8 @@ public class GameMechanics : MonoBehaviour {
 
 	public void UpdateHumanStats() {
 		health = (int) (100.0 * Math.Log10(humanstage + 2.0)); //Human's health at a given humanstage
-		strength = Math.Round((-(1.0/100.0)) * Math.Pow((humanstage * 20.0 - 100.0), 2.0)) + 100.0; //Human's strength at a given humanstage
-		maxcarryweight = strength;
-		speedI_runtime = (strength / 10.0 - maxcarryweight / 10.0); //Time you can sprint 1.5blocks/second
-		speedII_runtime = speedI_runtime/2.0; //Time you can sprint 3.0blocks/second
+		strength = Math.Round((-(1.0/100.0)) * Math.Pow((humanstage * 20.0 - 100.0), 2.0)) + 100.0; //Human's strength at a given humanstage		speed_multiplier = ((-(1.0 / 12.5)) * Math.Pow ((humanstage - 5.0), 2.0) + 2.0); //Human's speed multiplier at a given humanstage
+		jump_multiplier = ((-(1.0 / 12.5)) * Math.Pow ((humanstage - 5.0), 2.0) + 2.0); //Human's jump multiplier at a given humanstage
 	}
 
 
